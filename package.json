@@ -1,0 +1,24 @@
+{
+  "name": "vend-o-matic",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonathanhinton/vend-o-matic.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jonathanhinton/vend-o-matic/issues"
+  },
+  "homepage": "https://github.com/jonathanhinton/vend-o-matic#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.2"
+  }
+}
