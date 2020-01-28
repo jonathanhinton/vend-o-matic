@@ -42,27 +42,27 @@ app.get('/', (req, res) => {
 });
 
     // INSERT COINS
-    app.put('/', (req, res) => {
+app.put('/', (req, res) => {
     res.sendStatus(204);
 });
 
     // RETURN COINS
-    app.delete('/', (req, res) => {
+app.delete('/', (req, res) => {
     res.sendStatus(204);
 });
 
     // GET INVENTORY AS ARRAY
-    app.get('/inventory', (req, res) => {
+app.get('/inventory', (req, res) => {
     res.sendStatus(200);
 });
 
     // GET INVENTORY FOR THIS ITEM
-    app.get('/inventory/:id', (req, res) => {
+app.get('/inventory/:id', (req, res) => {
     res.sendStatus(200);
 });
 
     // GET A DRINK, RETURN COINS
-    app.put('/inventory/:id', (req, res) => {
+app.put('/inventory/:id', (req, res) => {
     res.sendStatus(204);
 });
 
