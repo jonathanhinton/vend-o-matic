@@ -83,12 +83,12 @@ app.delete('/', (req, res) => {
         res.sendStatus(204);
     } else {
 
-        // if someone selects a product before putting any coins in
+        // if someone selects coin return before putting any coins in
         res.set({
             "Content-Type":"application/json",
             "X-Message":`No quarters to return`
         });
-        res.sendStatus(200);
+        res.sendStatus(204);
     }
 });
 
