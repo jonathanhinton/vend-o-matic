@@ -150,14 +150,20 @@ app.put('/inventory/:id', (req, res) => {
             quantity: updated_quantity
         };
 
+        // update drink inventory
         let targetIndex = inventory.indexOf(found_drink);
         inventory.splice(targetIndex, 1, updated);
 
-        // return coins
+        // add 2 coins from coin_cache to coin_bank
         coin_bank += 2;
         coins -= 2;
+        
+        // return coins extra coins to user
         user_coins = coins;
         coins = 0;
+
+        // end session
+        session = false;
         let body = {quantity:1};
         res.set({
             "Content-Type":"application/json",
