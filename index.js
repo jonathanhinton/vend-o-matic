@@ -41,28 +41,28 @@ app.get('/', (req, res) => {
     res.end();
 });
 
-app.put('/', (req, res) => {
     // INSERT COINS
+    app.put('/', (req, res) => {
     res.sendStatus(204);
 });
 
-app.delete('/', (req, res) => {
     // RETURN COINS
+    app.delete('/', (req, res) => {
     res.sendStatus(204);
 });
 
-app.get('/inventory', (req, res) => {
     // GET INVENTORY AS ARRAY
+    app.get('/inventory', (req, res) => {
     res.sendStatus(200);
 });
 
-app.get('/inventory/:id', (req, res) => {
     // GET INVENTORY FOR THIS ITEM
+    app.get('/inventory/:id', (req, res) => {
     res.sendStatus(200);
 });
 
-app.put('/inventory/:id', (req, res) => {
     // GET A DRINK, RETURN COINS
+    app.put('/inventory/:id', (req, res) => {
     res.sendStatus(204);
 });
 
