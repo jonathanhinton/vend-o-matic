@@ -39,9 +39,10 @@ app.get('/', (req, res) => {
     console.log(vending_machine);
     res.writeHead(200, {
         "Content-Type":"application/json",
-        "X-Coins":`${coins}/2 coins in machine`
+        "X-Message":`insert quarters`,
+        "X-Coins":coins
     });
-    res.end('Tasty beverages for $0.50...feels like 1983 again');
+    res.end('Tasty beverages for $0.50...feels like 1988 again');
 });
 
     // INSERT COINS
@@ -57,7 +58,8 @@ app.put('/', (req, res) => {
     coins += 1;
     res.writeHead(204, {
         "Content-Type":"application/json",
-        "X-Coins":`${coins} coin(s) accepted`
+        "X-Message":`quarters inserted`,
+        "X-Coins":coins
     });
     res.end();
 });
@@ -74,17 +76,18 @@ app.delete('/', (req, res) => {
         coins = 0;
         res.writeHead(204, {
             "Content-Type":"application/json",
-            "X-Coins":`${user_coins} coin(s) returned`
+            "X-Message":`return quarters`,
+            "X-Coins":user_coins
         });
-        res.end('insert coins');
+        res.end('insert quarters');
     } else {
 
         // if someone pushes the button before putting any coins in
         res.writeHead(204, {
             "Content-Type":"application/json",
-            "X-Coins":`No coins to return`
+            "X-Message":`No quarters to return`
         });
-        res.end('insert coins');
+        res.end('insert quarters');
     }
 });
 
@@ -99,22 +102,40 @@ app.get('/inventory', (req, res) => {
 
     // GET INVENTORY FOR THIS ITEM
 app.get('/inventory/:id', (req, res) => {
-    let found = inventory.find(function (item) {
+    let found_drink = inventory.find(function (item) {
         return item.id === req.params.id;
       });
-      let body = {quantity:found.quantity}
-      console.log(found.quantity);
+      let body = {quantity:found_drink.quantity}
+      console.log(found_drink.quantity);
       res.status(200).send(body);
 });
 
     // GET A DRINK, RETURN COINS
 app.put('/inventory/:id', (req, res) => {
+
+    let found_drink = inventory.find(function (item) {
+        return item.id === req.params.id;
+      });
     // someone selects a product without inserting coins
-
+    if(!session) {
+        res.writeHead(400, {
+            "Content-Type":"application/json",
+            "X-Message":`insert 2 quarters and make a selection`
+        });
+        res.end();
+    }
     // someone selects a product with insufficient funds
-
+    else if (coins < 2) {
+        res.writeHead(403, {
+            "Content-Type":"application/json",
+            "X-Message":`insert another quarter`,
+            "X-Coins":coins
+        });
+        res.end();
+    } else if (coins >= 2 && found_drink.quantity === 0) {
     // someone selects a product that is out of stock 
 
+    }
     res.sendStatus(204);
 });
 
