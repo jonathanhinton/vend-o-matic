@@ -36,7 +36,7 @@ let coins = vending_machine.coin_cache;
 let coin_bank = vending_machine.coin_bank;
 let session = vending_machine.session;
 
-// GET AT ROOT
+// RUN GET METHOD AT ROOT DIRECTORY
 app.get('/', (req, res) => {
     res.set({
         "Content-Type":"application/json",
@@ -103,7 +103,7 @@ app.get('/inventory', (req, res) => {
 
     // GET INVENTORY FOR THIS ITEM
 app.get('/inventory/:id', (req, res) => {
-    let found_drink = inventory.find(function (item) {
+    let found_drink = inventory.find(item => {
         return item.id === req.params.id;
       });
       let body = {quantity:found_drink.quantity}
@@ -113,7 +113,7 @@ app.get('/inventory/:id', (req, res) => {
     // GET A DRINK, RETURN COINS
 app.put('/inventory/:id', (req, res) => {
 
-    let found_drink = inventory.find(function (item) {
+    let found_drink = inventory.find(item => {
         return item.id === req.params.id;
       });
     // someone selects a product without inserting coins
