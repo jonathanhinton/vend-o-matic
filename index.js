@@ -36,24 +36,62 @@ app.get('/', (req, res) => {
     console.log(vending_machine);
     res.writeHead(200, {
         "Content-Type":"application/json",
-        "X-Coins":`${vending_machine.coin_cache}/2`
+        "X-Coins":`${vending_machine.coin_cache}/2 coins in machine`
     });
-    res.end();
+    res.end('Tasty beverages for $0.50...feels like 1983 again');
 });
 
     // INSERT COINS
 app.put('/', (req, res) => {
-    res.sendStatus(204);
+    
+    // Begin new transaction/session
+    if (!vending_machine.session) {
+        vending_machine.session = true;
+    }
+
+    // Add coin to vending machine cache
+    req.body = {coin:1};
+    vending_machine.coin_cache += 1;
+    res.writeHead(204, {
+        "Content-Type":"application/json",
+        "X-Coins":`${vending_machine.coin_cache} coin(s) accepted`
+    });
+    res.end();
 });
 
     // RETURN COINS
 app.delete('/', (req, res) => {
-    res.sendStatus(204);
+    // if session is true, there will be coins to return
+    if (vending_machine.session) {
+        // end session
+        vending_machine.session = false;
+
+        // return coins
+        user_coins = vending_machine.coin_cache;
+        vending_machine.coin_cache = 0;
+        res.writeHead(204, {
+            "Content-Type":"application/json",
+            "X-Coins":`${user_coins} coin(s) returned`
+        });
+        res.end('insert coins');
+    } else {
+
+        // if someone pushes the button before putting any coins in
+        res.writeHead(204, {
+            "Content-Type":"application/json",
+            "X-Coins":`No coins to return`
+        });
+        res.end('insert coins');
+    }
 });
 
     // GET INVENTORY AS ARRAY
 app.get('/inventory', (req, res) => {
-    res.sendStatus(200);
+    let remaining_inv = [];
+    vending_machine.inventory.forEach(item => {
+        remaining_inv.push(item.quantity);
+    })
+    res.status(200).send(remaining_inv);
 });
 
     // GET INVENTORY FOR THIS ITEM
