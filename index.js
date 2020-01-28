@@ -2,7 +2,7 @@ const http = require('http');
 const express = require('express');
 
 const app = express();
-
+app.use(express.json());
 //Set up data for Inventory
 let inventory = [
     {
@@ -31,8 +31,39 @@ let vending_machine = {
     inventory: inventory
 };
 
+// GET AT ROOT
 app.get('/', (req, res) => {
+    console.log(vending_machine);
+    res.writeHead(200, {
+        "Content-Type":"application/json",
+        "X-Coins":`${vending_machine.coin_cache}/2`
+    });
+    res.end();
+});
+
+app.put('/', (req, res) => {
+    // INSERT COINS
+    res.sendStatus(204);
+});
+
+app.delete('/', (req, res) => {
+    // RETURN COINS
+    res.sendStatus(204);
+});
+
+app.get('/inventory', (req, res) => {
+    // GET INVENTORY AS ARRAY
     res.sendStatus(200);
+});
+
+app.get('/inventory/:id', (req, res) => {
+    // GET INVENTORY FOR THIS ITEM
+    res.sendStatus(200);
+});
+
+app.put('/inventory/:id', (req, res) => {
+    // GET A DRINK, RETURN COINS
+    res.sendStatus(204);
 });
 
 const server = http.createServer(app);
