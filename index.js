@@ -154,7 +154,7 @@ app.put('/inventory/:id', (req, res) => {
         let targetIndex = inventory.indexOf(found_drink);
         inventory.splice(targetIndex, 1, updated);
 
-        // add 2 coins from coin_cache to coin_bank
+        // add 2 coins to coin_bank from coin_cache
         coin_bank += 2;
         coins -= 2;
         
