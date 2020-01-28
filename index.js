@@ -83,7 +83,7 @@ app.delete('/', (req, res) => {
         res.sendStatus(204);
     } else {
 
-        // if someone pushes the button before putting any coins in
+        // if someone selects a product before putting any coins in
         res.set({
             "Content-Type":"application/json",
             "X-Message":`No quarters to return`
@@ -112,7 +112,6 @@ app.get('/inventory/:id', (req, res) => {
 
     // GET A DRINK, RETURN COINS
 app.put('/inventory/:id', (req, res) => {
-
     let found_drink = inventory.find(item => {
         return item.id === req.params.id;
       });
@@ -132,8 +131,9 @@ app.put('/inventory/:id', (req, res) => {
             "X-Coins":coins
         });
         res.sendStatus(403);
-    } else if (coins >= 2 && found_drink.quantity === 0) {
+    } 
     // someone selects a product that is out of stock 
+    else if (coins >= 2 && found_drink.quantity === 0) {
         res.set({
             "Content-Type":"application/json",
             "X-Message":`please make another selection ${found_drink.name} is out of stock`,
