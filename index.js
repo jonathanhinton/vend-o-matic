@@ -4,6 +4,9 @@ const express = require('express');
 const app = express();
 app.use(express.json());
 
+// Set up route to static files
+app.use(express.static('public'))
+
 //Set up data for Vending Machine
 let vending_machine = {
     coin_slot_height:"24.28mm",
@@ -37,6 +40,7 @@ let coin_bank = vending_machine.coin_bank;
 let session = vending_machine.session;
 
 // RUN GET METHOD AT ROOT DIRECTORY
+
 app.get('/', (req, res) => {
     res.set({
         "Content-Type":"application/json",
