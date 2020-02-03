@@ -5,7 +5,7 @@ const app = express();
 app.use(express.json());
 
 // Set up route to static files
-app.use(express.static('public'))
+app.use(express.static('public'));
 
 //Set up data for Vending Machine
 let vending_machine = {
