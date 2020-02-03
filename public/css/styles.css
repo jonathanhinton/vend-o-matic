@@ -29,11 +29,16 @@ svg {
 }
 .drink_button:hover,
 #coin_return:hover,
-#coin_slot:hover {
+#coin_slot:hover,
+#inventory:hover {
     cursor:pointer;
 }
 .slideDown {
     animation:slide 1s ease-in-out 1 alternate both;
+}
+.spin {
+    transform-origin: 92.5% 30.2%;
+    animation: spinner 0.75s ease-out 1;
 }
 @keyframes slide {
     0% {
@@ -44,5 +49,13 @@ svg {
     }
     100% {
         transform: translateY(0);
+    }
+}
+@keyframes spinner {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(1080deg);
     }
 }

@@ -3,6 +3,7 @@ const drink_buttons = document.querySelectorAll('.drink_button');
 const coin_return = document.getElementById('coin_return');
 const coin_slot = document.getElementById('coin_slot');
 const slider = document.getElementById('slider');
+const inventory = document.getElementById('inventory');
 
 // add event listeners
 drink_buttons.forEach(button => {
@@ -21,4 +22,10 @@ slider.addEventListener('animationend', () => {
 })
 coin_slot.addEventListener('click', (e) => {
     console.log(coin_slot.id);
+});
+inventory.addEventListener('click', ()=>{
+    inventory.classList.add('spin');
+});
+inventory.addEventListener('animationend', () => {
+    inventory.classList.remove('spin');
 });
