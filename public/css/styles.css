@@ -27,3 +27,17 @@ svg {
 .cls-8 {
     fill:#f0ce31;
 }
+.slideDown {
+    animation:slide 1s ease-in-out 1 alternate both;
+}
+@keyframes slide {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(30px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}

@@ -2,6 +2,7 @@
 const drink_buttons = document.querySelectorAll('.drink_button');
 const coin_return = document.getElementById('coin_return');
 const coin_slot = document.getElementById('coin_slot');
+const slider = document.getElementById('slider');
 
 // add event listeners
 drink_buttons.forEach(button => {
@@ -13,8 +14,11 @@ drink_buttons.forEach(button => {
 
 coin_return.addEventListener('click', (e) => {
     console.log(coin_return.id);
+    slider.classList.add('slideDown');
 });
-
+slider.addEventListener('animationend', () => {
+    slider.classList.remove('slideDown');
+})
 coin_slot.addEventListener('click', (e) => {
     console.log(coin_slot.id);
 });
